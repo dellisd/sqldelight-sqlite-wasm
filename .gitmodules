@@ -1,0 +1,3 @@
+[submodule "sqldelight"]
+	path = sqldelight
+	url = git@github.com:cashapp/sqldelight.git
