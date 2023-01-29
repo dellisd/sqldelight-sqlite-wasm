@@ -13,23 +13,15 @@ import kotlinx.coroutines.flow.flow
 import org.example.db.Notes
 import org.jetbrains.compose.web.dom.B
 import org.jetbrains.compose.web.dom.Div
+import org.jetbrains.compose.web.dom.H1
 import org.jetbrains.compose.web.dom.P
 import org.jetbrains.compose.web.dom.Text
 
 @Composable
-fun NotesList(wrapper: DatabaseWrapper) {
-  val notes by
-    flow {
-      emitAll(
-        wrapper.withDatabase { database ->
-          database.notesQueries.getAll()
-        }
-          .asFlow()
-          .mapToList(Dispatchers.Main)
-      )
-  }.collectAsState(emptyList())
+fun NotesList(flow: Flow<List<Notes>>) {
+  val notes by flow.collectAsState(emptyList())
 
-  console.dir(notes)
+  H1 { Text("Saved Notes") }
 
   notes.forEach { note ->
     Div {

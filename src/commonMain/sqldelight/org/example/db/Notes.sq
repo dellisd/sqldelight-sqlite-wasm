@@ -10,4 +10,4 @@ add:
 INSERT INTO Notes (content, creation) VALUES (?, datetime());
 
 getAll:
-SELECT * FROM Notes;
+SELECT * FROM Notes ORDER BY id DESC;

@@ -4,8 +4,9 @@ let db = null;
 
 async function createDatabase() {
   const sqlite3 = await sqlite3InitModule();
-  console.dir(sqlite3);
-  db = new sqlite3.oo1.DB("/database.db", "c"); // TODO: Parameterize storage location, and type
+
+  // TODO: Parameterize storage location, and storage type
+  db = new sqlite3.oo1.DB("file:database.db?vfs=opfs", "c");
 }
 
 function handleMessage() {
@@ -17,10 +18,9 @@ function handleMessage() {
         throw new Error("exec: Missing query string");
       }
 
-      // TODO: Support prepared statement caching?
       return postMessage({
         id: data.id,
-        results: db.exec({ sql: data.sql, bind: data.params, returnValue: "resultRows" }),
+        results: { values: db.exec({ sql: data.sql, bind: data.params, returnValue: "resultRows" }) },
       })
     case "begin_transaction":
       return postMessage({
