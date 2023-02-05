@@ -2,8 +2,8 @@ import de.undercouch.gradle.tasks.download.Download
 
 plugins {
   kotlin("multiplatform") version "1.8.0"
-  id("app.cash.sqldelight") version "2.0.0-alpha05"
-  id("org.jetbrains.compose") version "1.3.0-rc05"
+  id("app.cash.sqldelight") version "2.0.0-SNAPSHOT"
+  id("org.jetbrains.compose") version "1.3.0"
   id("de.undercouch.download") version "5.3.0"
 }
 
@@ -12,6 +12,7 @@ version = "1.0-SNAPSHOT"
 
 repositories {
   mavenCentral()
+  maven("https://oss.sonatype.org/content/repositories/snapshots")
   maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
   google()
 }
@@ -35,8 +36,8 @@ kotlin {
   sourceSets {
     val jsMain by getting {
       dependencies {
-        implementation("app.cash.sqldelight:web-worker-driver")
-        implementation("app.cash.sqldelight:coroutines-extensions:2.0.0-alpha05")
+        implementation("app.cash.sqldelight:web-worker-driver:2.0.0-SNAPSHOT")
+        implementation("app.cash.sqldelight:coroutines-extensions:2.0.0-SNAPSHOT")
         implementation(compose.web.core)
         implementation(compose.runtime)
       }

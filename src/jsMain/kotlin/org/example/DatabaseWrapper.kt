@@ -4,10 +4,10 @@ import app.cash.sqldelight.async.coroutines.await
 import app.cash.sqldelight.async.coroutines.awaitCreate
 import app.cash.sqldelight.async.coroutines.awaitMigrate
 import app.cash.sqldelight.async.coroutines.awaitQuery
-import app.cash.sqldelight.driver.worker.JsWorkerSqlDriver
+import app.cash.sqldelight.driver.worker.WebWorkerDriver
 import org.example.db.Database
 
-class DatabaseWrapper(private val driver: JsWorkerSqlDriver) {
+class DatabaseWrapper(private val driver: WebWorkerDriver) {
   private var database: Database? = null
 
   suspend fun initializeDatabase() {

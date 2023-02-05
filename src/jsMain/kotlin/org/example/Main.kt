@@ -4,7 +4,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import app.cash.sqldelight.coroutines.asFlow
 import app.cash.sqldelight.coroutines.mapToList
-import app.cash.sqldelight.driver.worker.JsWorkerSqlDriver
+import app.cash.sqldelight.driver.worker.WebWorkerDriver
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.flow
@@ -16,7 +16,7 @@ import org.w3c.dom.Worker
 
 fun main() {
   val worker = Worker(js("""new URL("sqlite.worker.js", import.meta.url)""").unsafeCast<String>())
-  val driver = JsWorkerSqlDriver(worker)
+  val driver = WebWorkerDriver(worker)
   val wrapper = DatabaseWrapper(driver)
 
   renderComposable(rootElementId = "root") {
